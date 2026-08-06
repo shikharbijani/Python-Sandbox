@@ -1,4 +1,4 @@
-# Study Logger 
+# Study Logger 📖
 A simple command-line application built while learning file handling in Python.
 The program allows users to record study sessions in a CSV file and view previously logged sessions.
 
@@ -19,3 +19,15 @@ This project was created to practice working with files and CSV data in Python. 
 - Functions
 - Loops
 - Basic menu-driven program design
+
+## Future Improvements
+Possible features that could be added in future versions:
+- Search study sessions by date
+- Edit or delete existing sessions
+- Track total study hours
+- Display study statistics
+- Export study history
+
+---
+
+This project was built as part of my Python learning journey through **CS50's Introduction to Programming with Python**.
