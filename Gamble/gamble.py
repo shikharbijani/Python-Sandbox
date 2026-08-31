@@ -1,38 +1,103 @@
 import random
+
+def wager_percentage(p) -> int:    #Calculate the winning wager percetage based on winning probability     -p means p/12
+    if 10<= p <= 12:        
+        return 1.25
+    elif 7<= p <= 9:
+        return 1.5
+    elif p == 6:
+        return 2
+    elif 3 <= p <= 5:
+        return 3
+    elif p == 2 :
+        return 5
+    elif p == 1:
+        return 10
+
+def probability_calc(betting_choice,betting_number) -> int:    #Calculate p for wager percentage
+    if betting_choice == "Higher":
+        return (12-betting_number)
+    elif betting_choice == "Lower":
+        return (betting_number-1)
+    elif betting_choice == "Equal":
+        return 1
+
+def check_result(betting_choice,betting_number,dice) -> bool:   #Checking if player Won or Lost 
+    if betting_choice == "Higher":
+        if dice>betting_number:
+            return True
+        else:
+            return False
+    elif betting_choice == "Lower":
+        if dice<betting_number:
+            return True
+        else:
+            return False
+    elif betting_choice == "Equal":
+        if dice == betting_number:
+            return True
+        else:
+            return False
+
+def update_balance(balance,result,wager,wager_multiplier) -> int:   #Calculates new balance
+    if result:
+        balance += wager*wager_multiplier
+    else:
+        balance -=wager
+    return balance
+
+def bet_validation(betting_choice,betting_number) -> bool:
+    if betting_choice in ["Higher","Lower","Equal"]:
+        return probability_calc(betting_choice,betting_number) > 0
+    else:
+        return False
+    
+def wager_validation(balance,wager) -> None:    #Calculates if wager is valid
+    return 10 <= wager <= balance
+        
 def main():
-    wallet=int(input("Place a Bet:"))
-    hscore=0
-    while True:
-        dice_bet=int(input("Dice Number:"))
-        hl=input("Higher Or Lower?:")
+    balance = 1000
+    while True:                                                            #Round Loop
+        while True:                                                        #Wager Validation loop
+            try:
+                wager= int(input("Enter Wager:"))
+            except ValueError:
+                print("Not An Integer!")
+                continue
+            if wager_validation(balance,wager):
+                break
+            else:
+                print("Invalid Wager Amount")
+        while True:                                                        #Bet Validation loop
+            try:
+                betting_number = int(input("Enter Betting Number: "))
+            except ValueError:
+                print("Not An Integer!")
+                continue
+            betting_choice = input("Enter Betting Choice: ")
+            if bet_validation(betting_choice, betting_number):
+                break
+            else:
+                print("Invalid Bet!")  #can be a better msg!
+        p=probability_calc(betting_choice,betting_number)
+        wager_multiplier=wager_percentage(p)
         dice=random.randint(1,12)
-        if hl=='Higher':
-            print("On the table:",dice)
-            if dice >= dice_bet:
-                print('You Won!')
-                wallet+=int(wallet*((dice-dice_bet)/100))
-                print("Current Balance:",wallet,sep="$")
-                if wallet>hscore:
-                    hscore=wallet
-            else:
-                print("Better Luck Next Time!")
-                wallet-=int(wallet*((dice-dice_bet)/100))
-                print("Current Balance:",wallet,sep="$")
-        if hl=="Lower":
-            print("On the table",dice)
-            if dice <= dice_bet:
-                print("You Won!")
-                wallet+=int(wallet*((dice_bet-dice)/100))
-                print("Current Balance:",wallet,sep="$")
-                if wallet>hscore:
-                    hscore=wallet
-            else:
-                print("Better Luck Next Time!")
-                wallet-=int(wallet*((dice_bet-dice)/100))
-                print("Current Balance:",wallet,sep="$")
-        if wallet <= 0:
-            print("Well You are broke!")
-            print("Highest Amount Earned:",hscore)
+        if check_result(betting_choice,betting_number,dice):
+            print("Congrats! You Won!")
+            result=True
+        else:
+            print("You Lost! Better Luck Next Time!")
+            result=False
+        balance=update_balance(balance,result,wager,wager_multiplier)
+        print(f"You current balance is: {balance}")
+        if balance <10:
+            print("The balance is too low to play another round!")
             break
-           
-main()
+        next_round=input("Do you wanna play another round? (y/n):")
+        if next_round == "y":
+            continue
+        else:
+            break
+
+if __name__=="__main__":
+    main()
