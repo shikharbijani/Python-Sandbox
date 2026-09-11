@@ -1,50 +1,35 @@
-# Minecraft Inventory Manager ⛏️
-A command-line inventory management game inspired by Minecraft.
-The program allows users to gather resources, craft items, and manage their inventory through a menu-driven interface.
+# Minecraft-Themed Data & Combat System
 
-## Purpose
-This project was created to practice Python data structures and writing larger programs with multiple features working together.
+A personal project tracking my growth as a Python programmer, rebuilding the same idea across multiple versions.
 
-## Versions
+## Version History
 
-### minecraft_v1
-The first version of the project.
-Features:
-- Gather resources
-- View inventory
-- Craft basic tools
-- Simple menu system
+### V1
+- First version, written using basic `if`/`elif` chains
+- Simple inventory system (dict-based) with gathering, crafting, and smelting
+- Flat achievement tracking
 
-### minecraft_v2
-Built on top of **minecraft_v1**.
-Improvements include:
-- Smelting system
-- Achievement system
-- Expanded inventory
-- Additional crafting options
-- Cleaner and more organized code
-- Improved menu structure
+### V2
+- Rewritten after learning about functions and data structures
+- Switched from `if`/`elif` to `match`/`case`
+- Achievements restructured from a flat dict to a list of dicts
 
-## Concepts Practiced
-- Dictionaries
-- Lists
-- Functions
-- Loops
-- Match-case statements
-- Program state management
-- Menu-driven program design
+### V3 (in progress)
+- Rebuilt from scratch to learn and apply Object-Oriented Programming
+- Introduced `Entity` as a base class, with `Player` and `Mob` inheriting from it
+- Implemented a turn-based combat system: attacking, taking damage, win/lose detection, and XP rewards
+- Practicing core OOP concepts: classes & objects, `__init__`, methods & `self`, inheritance, method overriding, and polymorphism
+- Working on adding multiple mob types (e.g. `Skeleton`) with unique stats via inheritance
 
-## Future Improvements
+## Planned
 
-Possible features that could be added in future versions:
+### V3.5
+- Weapon tiers affecting player damage
+- Multiple mob types with distinct attack behavior
 
-- Save and load inventory
-- More crafting recipes
-- Mining levels
-- Health and hunger system
-- Multiple worlds
-- Better user interface
+### V4
+- Merge V2's inventory/crafting/smelting system with V3's OOP combat system into one unified game
 
----
+## Goal
 
-This project was built as part of my Python learning journey through **CS50's Introduction to Programming with Python**.
+This project exists mainly to track my own progress — comparing how I structured code before and after learning new concepts (functions, then OOP).
