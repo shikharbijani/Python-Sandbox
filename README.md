@@ -21,9 +21,15 @@ The goal of this repository is to:
 
 A simple Formula 1 driver search application built while learning how to work with APIs, JSON data, HTTP requests, and external libraries.
 
-### Minecraft Inventory Manager
+### Minecraft Project (V1 → V3, in progress)
 
-A menu-driven inventory system inspired by Minecraft. This project helped me practice dictionaries, lists, functions, program logic, and managing program state.
+A Minecraft-themed data storage and combat system, rebuilt multiple times to track my own growth:
+
+* **V1** — First version, built using basic `if`/`elif` chains. A dictionary-based inventory system with gathering, crafting, and smelting.
+* **V2** — Rewritten after learning functions and data structures more deeply. Switched to `match`/`case`, restructured achievement tracking.
+* **V3** — Rebuilt from scratch to learn Object-Oriented Programming. Introduced a proper class hierarchy (`Entity` → `Player`/`Mob` → `Skeleton`), inheritance, method overriding, and polymorphism, with a working turn-based combat system.
+* **V3.5 (planned)** — Weapon tiers and multiple mob types with distinct behavior.
+* **V4 (planned)** — Merge V2's inventory/crafting system with V3's OOP combat system into one unified game.
 
 ### Study Logger
 
@@ -44,7 +50,7 @@ A simple library management project built while learning Object-Oriented Program
 * Completed: File Handling
 * Completed: CSV
 * Completed: APIs and JSON
-* Currently Learning: Object-Oriented Programming
+* Currently Learning: Object-Oriented Programming (classes, inheritance, polymorphism)
 * Next: Data Science Libraries (NumPy and Pandas)
 * Future: Machine Learning
 
