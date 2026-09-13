@@ -22,14 +22,21 @@ A personal project tracking my growth as a Python programmer, rebuilding the sam
 - Win, loss, and per-mob-defeat XP awarding all handled correctly
 - Type hints added throughout
 
-## Planned
+### V3.5 — Complete
+- Added a `Utility` base class (name, durability) to share logic between future `Weapon` and `Tool` subclasses
+- `Weapon(Utility)` adds `damage` on top of name/durability
+- `Player.attack()` uses an equipped weapon's damage if present, otherwise falls back to unarmed damage
 
-### V3.5
-- Weapon tiers affecting player damage
-- Multiple mob types with distinct attack behavior (in progress: `Skeleton` done, more to come)
+## In Progress
 
 ### V4
-- Merge V2's inventory/crafting/smelting system with V3's OOP combat system into one unified game
+- Merging V2's inventory/crafting/smelting system with V3.5's OOP combat system into one unified game
+- `Inventory` class tracks `self.resources` (dict of raw material counts) and `self.equipment` (dict of crafted `Weapon` objects)
+- `sword_recipe` and `smelt_recipe` kept as module-level constant lookup tables (tiers/items with cost, and for swords, durability + damage)
+- `add()`, `craft()`, and `smelt()` all complete — `smelt()` follows the same check → produce → deduct pattern as `craft()`
+
+## Planned
+- Add a `Tool(Utility)` subclass once a mining/gathering mechanic exists to make use of it
 
 ## Goal
 
