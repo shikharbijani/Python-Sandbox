@@ -27,13 +27,14 @@ A personal project tracking my growth as a Python programmer, rebuilding the sam
 - `Weapon(Utility)` adds `damage` on top of name/durability
 - `Player.attack()` uses an equipped weapon's damage if present, otherwise falls back to unarmed damage
 
-## In Progress
-
-### V4
-- Merging V2's inventory/crafting/smelting system with V3.5's OOP combat system into one unified game
+### V4 — Complete
+- Merged V2's inventory/crafting/smelting system with V3.5's OOP combat system into one unified game
 - `Inventory` class tracks `self.resources` (dict of raw material counts) and `self.equipment` (dict of crafted `Weapon` objects)
 - `sword_recipe` and `smelt_recipe` kept as module-level constant lookup tables (tiers/items with cost, and for swords, durability + damage)
-- `add()`, `craft()`, and `smelt()` all complete — `smelt()` follows the same check → produce → deduct pattern as `craft()`
+- `add()`, `craft()`, and `smelt()` all follow a consistent check → produce → deduct pattern
+- `Player` now holds its own `Inventory` (`self.inventory`) instead of a bare weapon reference
+- `Player.equipped` tracks the currently wielded tier (a string, e.g. `"Iron"`); `Player.equip(tier)` validates the tier exists in `self.inventory.equipment` before switching to it
+- `Player.attack()` looks up the equipped weapon fresh from `self.inventory.equipment` each turn, so damage and durability loss reflect whatever is currently equipped — even if it changes mid-game
 
 ## Planned
 - Add a `Tool(Utility)` subclass once a mining/gathering mechanic exists to make use of it
