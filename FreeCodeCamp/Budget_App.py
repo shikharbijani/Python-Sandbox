@@ -31,11 +31,11 @@ class Category:
         return False
 
     def __str__(self):
-        print(self.name.center(30,"*"))
-        body=""
-        for _ in self.ledger:
-            print(_)
-        return ""
+        output=self.name.center(30,"*")+"\n"
+        for payment in self.ledger:
+            output+=f"{payment['description'][:23].ljust(23)}{payment['amount']:>7.2f}\n"
+        output+=f"Total: {self.get_balance()}"
+        return output
 
 
 def create_spend_chart(categories):
@@ -44,6 +44,7 @@ def create_spend_chart(categories):
 cat=Category("cat")
 gor=Category("gor")
 
-cat.deposit(1000)
-cat.withdraw(-500)
+cat.deposit(1000,"Initail Deposit")
+cat.withdraw(-500,"Party")
+cat.deposit(200,"Refund")
 print(cat)
