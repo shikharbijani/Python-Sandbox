@@ -1,4 +1,8 @@
+
+
 class Movie:
+    """Parent class representing a movie."""
+    
     def __init__(self, title, year, director, duration):
         if not title.strip():
             raise ValueError('Title cannot be empty')
@@ -17,11 +21,32 @@ class Movie:
     def __str__(self):
         return f'{self.title} ({self.year}) - {self.duration} min, {self.director}'
 
+class TVSeries(Movie):
+    """Child class representing an entire TV series."""
+    
+    def __init__(self, title, year, director, duration, seasons, total_episodes):
+        super().__init__(title, year, director, duration)
+        
+        if seasons < 1:
+            raise ValueError('Seasons must be 1 or greater')
+        if total_episodes < 1:
+            raise ValueError('Total episodes must be 1 or greater')
+        
+        self.seasons = seasons
+        self.total_episodes = total_episodes
+    
+    def __str__(self):
+        return f'{self.title} ({self.year}) - {self.seasons} seasons, {self.total_episodes} episodes, {self.duration} min avg, {self.director}'
+
 class MediaCatalogue:
+    """A catalogue that can store different types of media items."""
+    
     def __init__(self):
         self.items = []
     
     def add(self, media_item):
+        if not isinstance(media_item, Movie):
+            raise TypeError('Only Movie or TVSeries instances can be added')
         self.items.append(media_item)
     
     def __str__(self):
@@ -39,6 +64,13 @@ catalogue = MediaCatalogue()
 try:
     movie1 = Movie('The Matrix', 1999, 'The Wachowskis', 136)
     catalogue.add(movie1)
+    movie2 = Movie('Inception', 2010, 'Christopher Nolan', 148)
+    catalogue.add(movie2)
+    
+    series1 = TVSeries('Scrubs', 2001, 'Bill Lawrence', 24, 9, 182)
+    catalogue.add(series1)
+    series2 = TVSeries('Breaking Bad', 2008, 'Vince Gilligan', 47, 5, 62)
+    catalogue.add(series2)
     
     print(catalogue)
 except ValueError as e:
