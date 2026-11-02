@@ -41,11 +41,17 @@ def multiplication_matrix(matrix_1, matrix_2):
         
             
 
-def transpose_matrix():
-    pass
+def transpose_matrix(matrix):
+    transposed_matrix=[]
+    for i in range(len(matrix[1])):
+        transposed_matrix.append([])
+        for j in range(len(matrix)):
+            transposed_matrix[i].append(matrix[j][i])
+    return transposed_matrix
+
 
 def deteminate():
-    pass
+    ...
 
 def main():
     matrix_1=[[1,2,3],
@@ -56,7 +62,8 @@ def main():
               [1,2,2],
               [4,2,1]]
     
-    print(multiplication_matrix(matrix_1,matrix_2))
+    # print(multiplication_matrix(matrix_1,matrix_2))
+    print(transpose_matrix(matrix_2))
 
 if __name__=="__main__":
     main()
