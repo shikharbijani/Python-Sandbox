@@ -6,18 +6,17 @@ def square_root_bisection(number,tolerance=0.1,max_iteration=50):
         return number
     else:
         low=0
-        high=number
+        high=max(1,number)
         for _ in range(max_iteration):
             mid=(low+high)/2
             if high-low<=tolerance:
-                print(f"The sqare root of {number} is approximately {mid}")
+                print(f"The square root of {number} is approximately {mid}")
                 return mid
             elif mid**2>number:
                 high=mid
             else:
                 low=mid
+        print(f"Failed to converge within {max_iteration} iterations")
+        return None
 
-
-# print(square_root_bisection(9))
-print(square_root_bisection(0.001, 1e-7, 50) )
-        
+square_root_bisection(0.001, 1e-7, 50) #The square root of 0.001 is approximately 0.03162279725074768
