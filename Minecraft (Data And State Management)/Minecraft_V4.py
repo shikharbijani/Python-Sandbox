@@ -84,13 +84,13 @@ class Inventory():                                                              
         self.resources={"Wood":6,"Stone":3,"Iron":2,"Diamond":3,"Iron Ore":1,"Coal":4}              #Default Inventory
         self.equipment={}                                                                           #Default Equipment
 
-    def add(self,name,quantity):                                                                    #Adding New Resources to self.resources
+    def add(self,name: str,quantity: int):                                                                    #Adding New Resources to self.resources
         if name in self.resources:
             self.resources[name]+=quantity
         else:
             self.resources[name]=quantity
 
-    def craft(self,tier):                                                                           #Crafting
+    def craft(self,tier: str):                                                                           #Crafting
         cost=sword_recipe[tier]["cost"]                                                             #Take Cost Of Crafting from Sword_Recipe
         durability=sword_recipe[tier]["durability"]                                                 #Store Durability and Damage (Later Used when making Weapon())
         damage=sword_recipe[tier]["damage"]
